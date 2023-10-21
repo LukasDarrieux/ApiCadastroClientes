@@ -14,6 +14,8 @@ namespace ApiCadastroClientes
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors();
+
 
             var app = builder.Build();
 
@@ -25,7 +27,12 @@ namespace ApiCadastroClientes
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(c =>
+            {
+                c.AllowAnyHeader();
+                c.AllowAnyMethod();
+                c.AllowAnyOrigin();
+            });
             app.UseAuthorization();
 
 
